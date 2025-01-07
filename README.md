@@ -39,6 +39,20 @@ CONTACT_EMAIL=your_email@example.com
 npm run dev
 ```
 
+## Deployment
+
+### Deploy to Vercel
+
+1. Push your code to GitHub
+2. Go to [Vercel](https://vercel.com)
+3. Import your GitHub repository
+4. Add the following environment variables in Vercel:
+   - `RESEND_API_KEY`
+   - `CONTACT_EMAIL`
+5. Deploy!
+
+Your app will be automatically deployed to a `.vercel.app` domain. You can also configure a custom domain in your Vercel project settings.
+
 ## Environment Variables
 
 - `RESEND_API_KEY`: Your Resend API key for sending emails
