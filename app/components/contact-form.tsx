@@ -101,9 +101,9 @@ export function ContactForm() {
       }
 
       setIsSubmitted(true)
-      form.reset()
     } catch (error) {
       console.error('Error submitting form:', error)
+      // Handle error (show error message to user)
     } finally {
       setIsSubmitting(false)
     }
@@ -136,9 +136,6 @@ export function ContactForm() {
 
   return (
     <div className="max-w-md mx-auto font-dm-sans">
-      <h1 className="text-3xl font-medium mb-2">Let's work together.</h1>
-      <p className="text-muted-foreground mb-8">Fill in the details, and I'll get back to you as soon as possible.</p>
-      
       <div className="mb-10">
         <nav aria-label="Progress">
           <ol role="list" className="flex items-center justify-between">
@@ -314,11 +311,14 @@ export function ContactForm() {
                     <FormLabel className="text-base">Tell me about your vision</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Share your ideas and what you're looking to achieve..."
-                        className="mt-2 min-h-[100px]"
+                        placeholder="Share your ideas, inspiration, and what you're hoping to achieve..."
+                        className="mt-2 resize-none"
                         {...field}
                       />
                     </FormControl>
+                    <FormDescription>
+                      {field.value?.length || 0}/500 characters
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -327,29 +327,31 @@ export function ContactForm() {
           )}
 
           {step === 4 && (
-            <FormField
-              control={form.control}
-              name="referralSource"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-base">How did you find me?</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="mt-2">
-                        <SelectValue placeholder="Select referral source" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="Instagram">Instagram</SelectItem>
-                      <SelectItem value="Website">Website</SelectItem>
-                      <SelectItem value="Referral">Referral</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <>
+              <FormField
+                control={form.control}
+                name="referralSource"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">How did you find me?</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className="mt-2">
+                          <SelectValue placeholder="Select referral source" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Instagram">Instagram</SelectItem>
+                        <SelectItem value="Website">Website</SelectItem>
+                        <SelectItem value="Referral">Referral</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </>
           )}
 
           <div className="flex justify-between pt-4">
@@ -370,7 +372,7 @@ export function ContactForm() {
                     Sending...
                   </>
                 ) : (
-                  "Submit"
+                  "Send Message"
                 )}
               </Button>
             )}

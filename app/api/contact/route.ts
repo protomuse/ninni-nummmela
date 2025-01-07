@@ -39,7 +39,7 @@ ${vision}
 
 Referral Source: ${referralSource}
       `,
-      reply_to: email,
+      reply_to: email
     })
     
     return NextResponse.json(
